@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 간단한 조회용 스타터 킷
 
-## Getting Started
+간단한 데이터 조회 및 검색/필터링 기능을 갖춘 Next.js 스타터 킷입니다.
 
-First, run the development server:
+## 기술 스택
+
+- **Next.js 15**: 최신 React 프레임워크
+- **React 19**: UI 라이브러리
+- **TypeScript**: 타입 안전성
+- **Tailwind CSS**: 유틸리티 기반 CSS 프레임워크
+- **App Router**: Next.js 최신 라우팅 방식
+
+## 주요 기능
+
+- ✅ 데이터 조회 테이블
+- ✅ 실시간 검색 기능
+- ✅ 드롭다운 필터링 (부서, 상태 등)
+- ✅ 반응형 디자인
+- ✅ 다크모드 지원
+- ✅ 결과 카운트 표시
+
+## 프로젝트 구조
+
+```
+src/
+├── app/
+│   ├── layout.tsx      # 루트 레이아웃
+│   ├── page.tsx        # 메인 페이지 (조회 기능)
+│   └── globals.css     # 전역 스타일
+├── components/         # (추가할 재사용 컴포넌트)
+└── lib/                # (추가할 유틸리티)
+```
+
+## 시작하기
+
+### 1. 의존성 설치
+
+```bash
+npm install
+```
+
+### 2. 개발 서버 실행
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열면 됩니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. 프로덕션 빌드
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 커스터마이징
 
-To learn more about Next.js, take a look at the following resources:
+### 데이터 추가
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`src/app/page.tsx`의 `SAMPLE_USERS` 배열을 수정하여 샘플 데이터를 변경할 수 있습니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```typescript
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    department: string;
+    status: "활성" | "비활성";
+}
+```
 
-## Deploy on Vercel
+### 필터링 추가
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+페이지의 필터 섹션에 새로운 필터를 추가할 수 있습니다:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. 상태 변수 추가
+2. useMemo 필터 로직 수정
+3. UI 필터 입력 추가
+
+### 스타일 변경
+
+Tailwind CSS의 커스텀 색상은 `tailwind.config.ts`에서 수정할 수 있습니다.
+
+## API 연동 (선택)
+
+데이터베이스나 API와 연동하려면:
+
+1. **API Route** 사용:
+   ```typescript
+   // src/app/api/users/route.ts
+   export async function GET() {
+       // API 로직
+   }
+   ```
+
+2. **Prisma** (선택):
+   ```bash
+   npm install @prisma/client
+   npm install -D prisma
+   npx prisma init
+   ```
+
+## 라이선스
+
+MIT
