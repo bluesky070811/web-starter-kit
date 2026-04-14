@@ -104,3 +104,4 @@ Tailwind CSS의 커스텀 색상은 `tailwind.config.ts`에서 수정할 수 있
 ## 라이선스
 
 MIT
+# web-starter-kit
