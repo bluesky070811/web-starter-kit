@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // .tool_response.filePath'); if [[ \"$f\" == *.log ]]; then echo \"$(date '+%Y-%m-%d %H:%M:%S') - $f\" >> .claude/file-edit-log.txt; fi",
+            "statusMessage": ".log 파일 저장 기록 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
